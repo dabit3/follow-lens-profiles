@@ -16,7 +16,7 @@ This is a good way to follow all of, or many of, the same people you do on Lens 
 export TW_BEARER=<your-bearer-token>
 ```
 
-Also set your private key environment variable and infura or other RPC environment variable.
+Also set your private key environment variable and infura or other RPC environment variable as referenced in `index.js`.
    
 3. Set the `conversationId` in `getTwitterReplies.js`
 
