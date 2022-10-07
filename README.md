@@ -4,7 +4,7 @@
 
 This app reads the responses of a tweet from Twitter and follows everyone there who has listed their Lens profile.
 
-This is a good way to follow all of, or many of, the same people you do on Lens as you also do on Twitter.
+This is a good way to follow all of, or many of, the same people you do on Lens as you also do [on Twitter](https://twitter.com/dabit3/status/1577148516849549312) 💁‍♂️.
 
 ### Running the app
 
