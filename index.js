@@ -44,7 +44,7 @@ async function followProfiles(provider, signer) {
     //     await contract.follow([address], [0x0], { gasPrice: feeData.gasPrice })
     //     console.log('followed...')
     //   }
-    }))
+    // }))
   } catch (err) {
     console.log('error: ', err)
   }
