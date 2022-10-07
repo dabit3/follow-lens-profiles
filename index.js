@@ -19,22 +19,32 @@ async function followProfiles(provider, signer) {
     signer
   )
   try {
-    const addresses = await Promise.all(handles.map(async handle => {
+    let addresses = await Promise.all(handles.map(async handle => {
       let address = await contract.getProfileIdByHandle(handle)
-      return address.toHexString()
+      let followModule = await contract.getFollowModule(address)
+      let canFollow = /^0x0+$/.test(followModule)
+      if (canFollow) {
+        return address.toHexString()
+      }
     }))
+    addresses = addresses.filter(address => address)
     const feeData = await provider.getFeeData()
     console.log('addresses: ', addresses)
     await contract.follow(addresses, [0x0], { gasPrice: feeData.gasPrice })
     console.log('followed all...')
+
     /* if you have issues with certain profiles, consider running them one at a time */
     // await Promise.all(handles.map(async handle => {
     //   const feeData = await provider.getFeeData()
     //   let address = await contract.getProfileIdByHandle(handle)
     //   address = address.toHexString()
-    //   await contract.follow([address], [0x0], { gasPrice: feeData.gasPrice })
-    //   console.log('followed...')
-    // }))
+    //   let followModule = await contract.getFollowModule(address)
+    //   let canFollow = /^0x0+$/.test(followModule)
+    //   if (canFollow) {
+    //     await contract.follow([address], [0x0], { gasPrice: feeData.gasPrice })
+    //     console.log('followed...')
+    //   }
+    }))
   } catch (err) {
     console.log('error: ', err)
   }
