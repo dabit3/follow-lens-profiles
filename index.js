@@ -1,7 +1,7 @@
 import { ethers } from 'ethers'
 import ABI from './ABI.json' assert { type: "json" }
 
-const addresses = ["stani.lens", "paris.lens", "nader.lens"]
+const handles = ["stani.lens", "paris.lens", "nader.lens"]
 
 const ENDPOINT = process.env.infuraEndpoint
 const CONTRACT_ADDRESS = "0xDb46d1Dc155634FbC732f92E853b10B288AD5a1d"
@@ -19,13 +19,22 @@ async function followProfiles(provider, signer) {
     signer
   )
   try {
-    await Promise.all(addresses.map(async address => {
-      const feeData = await provider.getFeeData()
-      let handle = await contract.getProfileIdByHandle(address)
-      handle = handle.toHexString()
-      await contract.follow([handle], [0x0], { gasPrice: feeData.gasPrice })
-      console.log('followed...')
+    const addresses = await Promise.all(handles.map(async handle => {
+      let address = await contract.getProfileIdByHandle(handle)
+      return address.toHexString()
     }))
+    const feeData = await provider.getFeeData()
+    console.log('addresses: ', addresses)
+    await contract.follow(addresses, [0x0], { gasPrice: feeData.gasPrice })
+    console.log('followed all...')
+    /* if you have issues with certain profiles, consider running them one at a time */
+    // await Promise.all(handles.map(async handle => {
+    //   const feeData = await provider.getFeeData()
+    //   let address = await contract.getProfileIdByHandle(handle)
+    //   address = address.toHexString()
+    //   await contract.follow([address], [0x0], { gasPrice: feeData.gasPrice })
+    //   console.log('followed...')
+    // }))
   } catch (err) {
     console.log('error: ', err)
   }
