@@ -1,7 +1,27 @@
 ## Follow an array of profiles on Lens Protocol
 
-This script takes an array of profiles and follows everyone.
+> DISCLAIMER - This is highly experimental.
 
-Will soon update with a Twitter API call to read addresses from responses to a tweet, to make it easier for people to follow those who respond when people ask "drop your lens".
+This app reads the responses of a tweet from Twitter and follows everyone there who has listed their Lens profile.
 
-Also the script will probably be useful to just aggregate addresses for allow-lists, etc..
+This is a good way to follow all of, or many of, the same people you do on Lens as you also do on Twitter.
+
+### Running the app
+
+1. Get a Twitter API Key
+
+2. Set the Twitter API key as an environment variable
+
+```sh
+export TW_BEARER = <your-bearer-token>
+```
+
+Also set your private key environment variable and infura or other RPC environment variable.
+   
+3. Set the `conversationId` in `getTwitterReplies.js`
+
+4. Run the script
+
+```sh
+node index.js
+```
