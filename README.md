@@ -1,4 +1,4 @@
-## Follow an array of profiles on Lens Protocol
+## Follow profiles on Lens Protocol from Twitter Replies
 
 > DISCLAIMER - This is highly experimental.
 
