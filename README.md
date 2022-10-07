@@ -13,7 +13,7 @@ This is a good way to follow all of, or many of, the same people you do on Lens 
 2. Set the Twitter API key as an environment variable
 
 ```sh
-export TW_BEARER = <your-bearer-token>
+export TW_BEARER=<your-bearer-token>
 ```
 
 Also set your private key environment variable and infura or other RPC environment variable.
